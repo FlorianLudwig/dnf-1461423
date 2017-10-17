@@ -1,7 +1,8 @@
 FROM fedora:26
 
 # run dnf to have some cache to work with
-RUN dnf check-update || exit 0
+# and enable testing
+RUN dnf config-manager --set-enabled updates-testing && dnf update -y
 
 ADD bug.py /usr/local/bin
 
